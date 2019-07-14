@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
 import { auth } from '../../utils/firebaseService'
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import TopNavBar from '../../components/TopNavBar/TopNavBar';
+import NeedLogin from '../../components/NeedLogin/NeedLogin';
+import Landing from '../Landing/Landing';
+import FAQ from '../FAQ/FAQ';
+import Prices from '../Prices/Prices';
+import Contact from '../Contact/Contact';
+import ProjectTracker from '../UserPortal/ProjectTracker/ProjectTracker';
+import StoryStructure from '../UserPortal/StoryStructure/StoryStructure';
+import Characters from '../UserPortal/Characters/Characters';
+import DialogueManager from '../UserPortal/DialogueManager/DialogueManager';
+import History from '../UserPortal/History/History';
+import WalkThrough from '../UserPortal/WalkThrough/WalkThrough';
+import PrivateRoute from '../../utils/privateRoute';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -36,22 +48,82 @@ class App extends Component {
   render() {
     return (
       <Router>
-          <div className="RedTaleApp">
-
-            <TopNavBar 
+        <div className="RedTaleApp">
+          <TopNavBar 
+            authenticated={this.state.authenticated}
+          />
+          <Switch>
+            <Route exact path="/" component={Landing}/>
+            <Route path="/faq" component={FAQ}/>
+            <Route path="/prices" component={Prices}/>
+            <Route path="/contact" component={Contact}/>
+            <PrivateRoute 
               authenticated={this.state.authenticated}
+              user={this.state.user}
+              showSideBar
+              path="/portal/projects" 
+              component={ProjectTracker} 
             />
-
-            <Switch>
-              <Route exact path="/" />
-              <Route path="/faq" />
-              <Route path="/prices" />
-              <Route path="/contact" />
-            </Switch>
-            
-          </div>
-        </Router>
-    );
+            <PrivateRoute 
+              authenticated={this.state.authenticated}
+              user={this.state.user}
+              showSideBar
+              project_id="?"
+              path="/portal/projects/:project_id/story" 
+              component={StoryStructure} 
+            />
+            <PrivateRoute 
+              authenticated={this.state.authenticated}
+              user={this.state.user}
+              showSideBar
+              project_id="?"
+              path="/portal/projects/:project_id/characters" 
+              component={Characters} 
+            />
+            <PrivateRoute 
+              authenticated={this.state.authenticated}
+              user={this.state.user}
+              showSideBar
+              project_id="?"
+              character_id="?"
+              path="/portal/projects/:project_id/characters/:character_id" 
+              component={Characters} 
+            />
+            <PrivateRoute 
+              authenticated={this.state.authenticated}
+              user={this.state.user}
+              showSideBar
+              project_id="?"
+              path="/portal/projects/:project_id/dialogue" 
+              component={DialogueManager} 
+            />
+            <PrivateRoute 
+              authenticated={this.state.authenticated}
+              user={this.state.user}
+              showSideBar
+              project_id="?"
+              path="/portal/projects/:project_id/history" 
+              component={History} 
+            />
+            <PrivateRoute 
+              authenticated={this.state.authenticated}
+              user={this.state.user}
+              showSideBar
+              project_id="?"
+              path="/portal/projects/:project_id/read" 
+              component={WalkThrough} 
+            />
+            <Route path="/login" render={props => (
+                <NeedLogin 
+                  {...props}
+                  authenticated={this.state.authenticated}
+                />
+            )} />
+          </Switch>
+          
+        </div>
+      </Router>
+    )
   }
 }
 
