@@ -60,7 +60,7 @@ class App extends Component {
             <PrivateRoute 
               authenticated={this.state.authenticated}
               user={this.state.user}
-              showSideBar
+              showSideBar //Remove eventually, keep for now for sidebar testing
               path="/portal/projects" 
               component={ProjectTracker} 
             />
