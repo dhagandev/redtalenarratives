@@ -1,6 +1,6 @@
 import React from 'react';
 import './SideNavBar.css';
-// import EditableBox from '../EditableBox/EditableBox';
+import EditableBox from '../EditableBox/EditableBox';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -87,18 +87,23 @@ const SideNavBar = ({authenticated, user, showSideBar}) => {
 	          paper: classes.drawerPaper,
 	        }}
 				>
-					{['Change Projects'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
+          <List>
+            <ListItem button key="Change Projects">
+              <ListItemText primary="Change Projects" />
             </ListItem>
-          ))}
+          </List>
+
 	        <Divider />
+
 	        <List>
 	        	<ListItem button key="Story Structure">
               <ListItemText primary="Story Structure" />
             </ListItem>
-	        	<ListItem button key="Walkthrough">
+            <ListItem button key="Walkthrough">
               <ListItemText primary="Walkthrough" />
+            </ListItem>
+            <ListItem button key="StoryMap">
+              <ListItemText primary="StoryMap" />
             </ListItem>
 	        	<ListItem button key="Characters">
               <ListItemText primary="Characters" />
@@ -113,14 +118,18 @@ const SideNavBar = ({authenticated, user, showSideBar}) => {
               <ListItemText primary="Inspirations" />
             </ListItem>
 	        </List>
+
 	        <Divider />
+
 	        <List>
 	        	<ListItem>
 	            <ListItemText primary="Chapter Summary" />
 	            <div className="edit-chap-summary">
 	            </div>
 	          </ListItem>
-	          
+	          <ListItem>
+		          <EditableBox />
+	          </ListItem>
 	        </List>
 				</Drawer>
 			</div>

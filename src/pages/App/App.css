@@ -31,3 +31,8 @@
     transform: rotate(360deg);
   }
 }
+
+.user-portal {
+  margin: 10px 325px;
+  width:  calc(100% - 340px);
+}

@@ -7,27 +7,27 @@ const CardArea = () => {
 		<div className="card-area">
 			<HomeCard 
 				text="Organize your projects and chapters"
-				icon="fa fa-folder-open fa-3x card-icon"
+				icon="perm_medias"
 			/>
 			<HomeCard 
 				text="Design branching narratives"
-				icon="fa fa-sitemap fa-3x card-icon"
+				icon="device_hub"
 			/>
 			<HomeCard 
 				text="Create your dialogue"
-				icon="fa fa-comment-dots fa-3x card-icon"
+				icon="record_voice_over"
 			/>
 			<HomeCard 
 				text="Construct elaborate characters"
-				icon="fa fa-id-card fa-3x card-icon"
+				icon="supervisor_account"
 			/>
 			<HomeCard 
 				text="Store your notes and inspiration"
-				icon="fa fa-database fa-3x card-icon"
+				icon="image_search"
 			/>
 			<HomeCard 
 				text="Export to Word and Google docs"
-				icon="fa fa-file-download fa-3x card-icon"
+				icon="get_app"
 			/>
 		</div>
 	)

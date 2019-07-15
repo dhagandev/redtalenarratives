@@ -1,0 +1,27 @@
+.projectTracker {
+	margin: 0 150px 50px;
+}
+
+.no-projects {
+	margin: 10px 0;
+	text-align: center;
+	font-size: 24px;
+}
+
+.no-projects-text {
+	margin-bottom: 20px;
+}
+
+.project-header {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.num-projects {
+	font-size: 24px;
+}
+
+.project-lists {
+	margin: 10px 0;
+}

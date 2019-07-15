@@ -34,32 +34,38 @@ class EditableBox extends Component {
 	}
   
   handleKeyDown (e) {
-	if (event.which === this.ESCAPE_KEY) {
-	    this.setState({
-          editText: this.props.name,
-          editing: false
-        });
-	} else if (event.which === this.ENTER_KEY) {
-		this.handleSubmit(e);
-	}
+	// if (event.which === this.ESCAPE_KEY) {
+	//     this.setState({
+ //          editText: this.props.name,
+ //          editing: false
+ //        });
+	// } else if (event.which === this.ENTER_KEY) {
+	// 	this.handleSubmit(e);
+	// }
   }
  
   render() {
     return (
-      <li>
-        <label className={this.state.editing ? 'hidden' : ''} 
-          onDoubleClick={this.handleEdit()}>{this.state.editText}
-        </label>
-        <input 
-          className={this.state.editing ? '' : 'hidden'} 
-          value={this.state.editText} 
-          onChange={this.handleChange.bind(this)} 
-          onBlur={this.handleSubmit.bind(this)}
-          onKeyDown={this.handleKeyDown.bind(this)}
-        />
-      </li>      
+      <div className="editableBox">
+        Your chapter's summary here...
+      </div>      
     );
   }
 }
+
+/*
+Replace Chapter Summary area here 
+
+<label className={this.state.editing ? 'hidden' : ''} 
+  onDoubleClick={this.handleEdit()}>{this.state.editText}
+</label>
+<input 
+  className={this.state.editing ? '' : 'hidden'} 
+  value={this.state.editText} 
+  onChange={this.handleChange.bind(this)} 
+  onBlur={this.handleSubmit.bind(this)}
+  onKeyDown={this.handleKeyDown.bind(this)}
+/>
+*/
 
 export default EditableBox;
