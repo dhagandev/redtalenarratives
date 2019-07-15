@@ -1,0 +1,11 @@
+.need-login {
+	margin: 100px auto;
+	width: 700px;
+	text-align: center;
+}
+
+.need-login-text {
+	font-size: 32px;
+	font-weight: bold;
+	margin: 20px;
+}

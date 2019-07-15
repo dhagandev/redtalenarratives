@@ -103,7 +103,7 @@ const Project = ({user, projectTitle}) => {
 				onClose={handleClose}
 			>
 				{['Chapter 1', 'Chapter 2', 'Chapter 3', 'Chapter 4'].map((text, index) => (
-					<div className="chapter-row">
+					<div className="chapter-row" key={text}>
 						<StyledMenuItem>
 							<ListItemText className="chapter-btn" primary={text} />
 							<div className="chapter-edits">

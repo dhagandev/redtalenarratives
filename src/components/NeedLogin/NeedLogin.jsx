@@ -1,4 +1,5 @@
 import React from 'react';
+import './NeedLogin.css'
 import { Redirect } from 'react-router-dom';
 import { login } from '../../utils/firebaseService';
 import { makeStyles } from '@material-ui/core/styles';

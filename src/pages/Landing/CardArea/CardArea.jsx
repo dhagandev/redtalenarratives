@@ -14,7 +14,7 @@ const CardArea = () => {
 				icon="device_hub"
 			/>
 			<HomeCard 
-				text="Create your dialogue"
+				text="Create elaborate dialogue"
 				icon="record_voice_over"
 			/>
 			<HomeCard 
