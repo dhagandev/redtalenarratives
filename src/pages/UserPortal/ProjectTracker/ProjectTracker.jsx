@@ -1,12 +1,9 @@
 import React from 'react';
 import './ProjectTracker.css';
 import Project from './Project/Project'
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemText from '@material-ui/core/ListItemText';
 
 const useStyles = makeStyles(theme => ({
   button: {
