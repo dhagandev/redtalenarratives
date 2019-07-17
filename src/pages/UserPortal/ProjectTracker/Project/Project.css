@@ -4,7 +4,7 @@
 
 .project-row {
 	width: 100%;
-	background: #B7B39F;
+	background: #b9baa3;
 }
 
 .chapter-row {
@@ -16,5 +16,9 @@
 }
 
 .project-btn {
-	width: 80%;
+	width: 750px;
+}
+
+#project-tracker-menu {
+	width: 950px;
 }

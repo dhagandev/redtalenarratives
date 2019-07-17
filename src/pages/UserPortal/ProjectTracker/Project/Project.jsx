@@ -1,5 +1,7 @@
 import React from 'react';
 import './Project.css';
+import AddChapterBtn from '../AddChapterBtn/AddChapterBtn'
+import config from '../../../../config'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
@@ -54,9 +56,29 @@ const StyledMenuItem = withStyles(theme => ({
   },
 }))(MenuItem);
 
-const Project = ({user, projectTitle}) => {
+const Project = ({projectId, useruid}) => {
 	const classes = useStyles();
-	const [anchorEl, setAnchorEl] = React.useState(null);
+	const [anchorEl, setAnchorEl] = React.useState(null)
+	const [project, setProject] = React.useState(null)
+	const domRef = React.createRef()
+	
+	function handleDelete() {
+		console.log("Deleting")
+		fetch(`${config.API_URI}/api/projects/deleteProject/${projectId}`, {
+					method: 'DELETE'
+				})
+				.then(res => {
+					console.log("Should be deleted now?")
+				})
+	}
+
+	function handleEdit() {
+		console.log("Editting")
+	}
+
+	function handleAddChapter() {
+		console.log("Add chapter")
+	}
 
 	function handleClick(event) {
 		setAnchorEl(event.currentTarget);
@@ -65,38 +87,55 @@ const Project = ({user, projectTitle}) => {
 	function handleClose() {
 		setAnchorEl(null);
 	}
-	
-	return (
+
+	React.useEffect(() => {
+		console.log(domRef.current)
+		fetch(`${config.API_URI}/api/projects/getProject/${projectId}`)
+			.then(res => res.json())
+			.then(res => setProject(res.projectInfo))
+	}, [])
+
+	if (project === null) {
+		return (
+			<div className="went-wrong">Uh oh, something went wrong!</div>
+		)
+	} else {
+		console.log(project)
+		return (
 		<div className="ind-project">
 			<div className="project-row">
 				<Button
+					ref={domRef}
 					className="project-btn"
 					aria-controls="customized-menu"
 					aria-haspopup="true"
 					onClick={handleClick}
 				>
-					{projectTitle}
+					{project.title}
 				</Button>
 				<div className="project-edits">
+					<AddChapterBtn 
+						useruid={useruid}
+						projectId={project.id}
+					/>
 					<Button
+						ref={domRef}
 						className="add-chapter-btn"
-					>
-						<Icon>add</Icon>
-					</Button>
-					<Button
-						className="add-chapter-btn"
+						onClick={handleEdit}
 					>
 						<Icon>edit</Icon>
 					</Button>
 					<Button
+						ref={domRef}
 						className="delete-chapter-btn"
+						onClick={handleDelete}
 					>
 						<Icon>delete</Icon>
 					</Button>
 				</div>
 			</div>
 			<StyledMenu
-				id="customized-menu"
+				id="project-tracker-menu"
 				anchorEl={anchorEl}
 				keepMounted
 				open={Boolean(anchorEl)}
@@ -107,12 +146,14 @@ const Project = ({user, projectTitle}) => {
 						<StyledMenuItem>
 							<ListItemText className="chapter-btn" primary={text} />
 							<div className="chapter-edits">
-								<Button
+								<Button 
+									ref={domRef}
 									className="add-chapter-btn"
 								>
 									<Icon>edit</Icon>
 								</Button>
-								<Button
+								<Button 
+									ref={domRef}
 									className="delete-chapter-btn"
 								>
 									<Icon>delete</Icon>
@@ -123,7 +164,9 @@ const Project = ({user, projectTitle}) => {
 				))}
 			</StyledMenu>
 		</div>
-	)
+		)
+	}
+
 }
 
 export default Project;

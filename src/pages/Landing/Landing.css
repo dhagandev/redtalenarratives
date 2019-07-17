@@ -30,6 +30,7 @@
 .intro-text {
 	margin: auto 0;
 	padding: 0 20px;
+	width: 400px;
 }
 
 .video-area {
@@ -42,4 +43,10 @@
 	font-style: italic;
 	font-weight: bolder;
 	margin: 15px 0;
+}
+
+.portal-img {
+	width: 500px;
+	height: auto;
+	border: #B7B39F 3px solid;
 }
