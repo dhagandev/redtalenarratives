@@ -1,5 +1,6 @@
 import React from 'react';
 import './Project.css';
+import { Redirect } from 'react-router-dom'
 import AddChapterBtn from '../AddChapterBtn/AddChapterBtn'
 import config from '../../../../config'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -64,12 +65,13 @@ const Project = ({projectId, useruid}) => {
 	
 	function handleDelete() {
 		console.log("Deleting")
-		fetch(`${config.API_URI}/api/projects/deleteProject/${projectId}`, {
+		fetch(`${config.API_URI}/api/projects/deleteProject/${projectId}?u=${useruid}`, {
 					method: 'DELETE'
 				})
 				.then(res => {
 					console.log("Should be deleted now?")
 				})
+		return <Redirect to="/"/>
 	}
 
 	function handleEdit() {
@@ -95,7 +97,7 @@ const Project = ({projectId, useruid}) => {
 			.then(res => setProject(res.projectInfo))
 	}, [])
 
-	if (project === null) {
+	if (!project) {
 		return (
 			<div className="went-wrong">Uh oh, something went wrong!</div>
 		)
